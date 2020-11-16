@@ -76,9 +76,9 @@ public class ReqresTest {
     @Test
     public void getSingleUserNotFound() {
         given()
-                .when()
+        .when()
                 .get("/api/users/23")
-                .then()
+        .then()
                 .log().all()
                 .statusCode(404)
                 .body(equalTo("{}"));
