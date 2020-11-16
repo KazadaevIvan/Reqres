@@ -28,9 +28,9 @@ public class ReqresTest {
         given()
                 .body(user)
                 .header("Content-Type", "application/json")
-                .when()
+        .when()
                 .post("/api/users")
-                .then()
+        .then()
                 .log().all()
                 .statusCode(201)
                 .body("$", hasKey("id") ,
@@ -42,9 +42,9 @@ public class ReqresTest {
     @Test
     public void getListUsers() {
         given()
-                .when()
+        .when()
                 .get("/api/users?page=2")
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
                 .body("total", equalTo(12));
@@ -61,9 +61,9 @@ public class ReqresTest {
                 .build();
 
         given()
-                .when()
+        .when()
                 .get("/api/users/2")
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
                 .body("data.id", equalTo(data.getId()),
@@ -87,9 +87,9 @@ public class ReqresTest {
     @Test
     public void getListResource() {
         given()
-                .when()
+        .when()
                 .get("/api/unknown")
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
                 .body("total", equalTo(12));
@@ -106,9 +106,9 @@ public class ReqresTest {
                 .build();
 
         given()
-                .when()
+        .when()
                 .get("/api/unknown/2")
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
                 .body("data.id", equalTo(resource.getId()),
@@ -121,9 +121,9 @@ public class ReqresTest {
     @Test
     public void getSingleResourceNotFound() {
         given()
-                .when()
+        .when()
                 .get("/api/unknow/23")
-                .then()
+        .then()
                 .log().all()
                 .statusCode(404)
                 .body(equalTo("{}"));
@@ -139,9 +139,9 @@ public class ReqresTest {
         given()
                 .body(user)
                 .header("Content-Type", "application/json")
-                .when()
+        .when()
                 .put("/api/users/2")
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
                 .body("job", equalTo(user.getJob()),
@@ -159,9 +159,9 @@ public class ReqresTest {
         given()
                 .body(user)
                 .header("Content-Type", "application/json")
-                .when()
+        .when()
                 .patch("/api/users/2")
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
                 .body("job", equalTo(user.getJob()),
@@ -172,9 +172,9 @@ public class ReqresTest {
     @Test
     public void deleteUser() {
         given()
-                .when()
+        .when()
                 .delete("/api/users/2")
-                .then()
+        .then()
                 .log().all()
                 .statusCode(204)
                 .body(equalTo(""));
@@ -190,9 +190,9 @@ public class ReqresTest {
         given()
                 .body(user)
                 .header("Content-Type", "application/json")
-                .when()
+        .when()
                 .post("/api/register")
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
                 .body("$", hasKey("id"),
@@ -208,9 +208,9 @@ public class ReqresTest {
         given()
                 .body(user)
                 .header("Content-Type", "application/json")
-                .when()
+        .when()
                 .post("/api/register")
-                .then()
+        .then()
                 .log().all()
                 .statusCode(400)
                 .body("error", equalTo("Missing password"));
@@ -226,9 +226,9 @@ public class ReqresTest {
         given()
                 .body(user)
                 .header("Content-Type", "application/json")
-                .when()
+        .when()
                 .post("/api/login")
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
                 .body("token", equalTo("QpwL5tke4Pnpja7X4"));
@@ -243,9 +243,9 @@ public class ReqresTest {
         given()
                 .body(user)
                 .header("Content-Type", "application/json")
-                .when()
+        .when()
                 .post("/api/login")
-                .then()
+        .then()
                 .log().all()
                 .statusCode(400)
                 .body("error", equalTo("Missing password"));
@@ -254,9 +254,9 @@ public class ReqresTest {
     @Test
     public void getDelayedResponse() {
         given()
-                .when()
+        .when()
                 .get("/api/users?delay=3")
-                .then()
+        .then()
                 .log().all()
                 .statusCode(200)
                 .time(Matchers.greaterThanOrEqualTo(3L), SECONDS);
